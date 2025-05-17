@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Niv Schendel | SQL & SAP Pro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* ==== DARK MODE ==== */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #181a1b;
+      color: #f2f2f2;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .container {
+      margin-top: 60px;
+      width: 95%;
+      max-width: 410px;
+      background: #23272e;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #0005;
+      padding: 38px 32px 26px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    .title {
+      font-size: 1.28rem;
+      font-weight: bold;
+      text-align: center;
+      color: #8bb8f9;
+      margin-bottom: 5px;
+      letter-spacing: .01em;
+    }
+    .subtitle {
+      font-size: 0.97rem;
+      text-align: center;
+      color: #b5b5c7;
+      margin-bottom: 12px;
+    }
+    .links, .otp-links {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      width: 100%;
+      align-items: center;
+    }
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: #23262f;
+      border: 1px solid #394355;
+      color: #eaf1fb;
+      text-decoration: none;
+      padding: 11px 22px;
+      border-radius: 28px;
+      font-size: 1.04rem;
+      transition: background 0.2s, border 0.2s;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .link-btn:hover {
+      background: #2e3647;
+      border: 1.5px solid #72a1ff;
+      color: #b8daff;
+    }
+    .otp-box {
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .otp-label {
+      color: #aaaec7;
+      font-size: 0.98rem;
+    }
+    .otp-input {
+      width: 100px;
+      padding: 9px;
+      font-size: 1.06rem;
+      border-radius: 10px;
+      border: 1px solid #3a445a;
+      background: #23262f;
+      color: #eaf1fb;
+      text-align: center;
+      outline: none;
+      margin-bottom: 8px;
+      transition: border .2s;
+    }
+    .otp-input:focus {
+      border: 1.3px solid #72a1ff;
+    }
+    .otp-error {
+      color: #ff4b4b;
+      font-size: 0.93rem;
+      min-height: 18px;
+      margin-top: -4px;
+    }
+    .otp-links {
+      margin-top: 10px;
+      animation: fadeIn .7s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    @media (max-width: 600px) {
+      .container {padding: 18px 4vw;}
+      .title {font-size: 1.05rem;}
+      .subtitle {font-size: 0.91rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">
+      SQL Professional | SAP B1 Implementer | Computer Science Student
+      <br>Self-Taught Tech Enthusiast | Building Efficient Tech Solutions
+    </div>
+    <div class="subtitle">Connect with me:</div>
+    <div class="links">
+      <a class="link-btn" href="https://github.com/schendel2606" target="_blank" title="GitHub">🐙 GitHub</a>
+      <a class="link-btn" href="https://www.linkedin.com/in/niv-schendel/" target="_blank" title="LinkedIn">💼 LinkedIn</a>
+      <a class="link-btn" href="mailto:schendel2606@gmail.com" title="Email">✉️ Email</a>
+      <a class="link-btn" href="#" onclick="alert('Coming soon!'); return false;" title="Facebook">📘 Facebook</a>
+    </div>
+    <div class="otp-box">
+      <div class="otp-label">Private links — enter access code:</div>
+      <input class="otp-input" id="otp" type="password" placeholder="OTP" maxlength="8" autocomplete="off" />
+      <div class="otp-error" id="otp-error"></div>
+      <div class="otp-links" id="otp-links" style="display:none;">
+        <a class="link-btn" href="https://wa.me/972525555579" target="_blank" title="WhatsApp">🟢 WhatsApp</a>
+        <a class="link-btn" href="Niv Schendel Resume.pdf" target="_blank" title="Resume">📄 Resume (PDF)</a>
+        <a class="link-btn" href="#" onclick="alert('Coming soon!'); return false;" title="Cover Letter">📝 Cover Letter</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    // ==== OTP Logic (single file, no server) ====
+    const CORRECT_OTP = "9248";
+    const otpInput = document.getElementById('otp');
+    const otpError = document.getElementById('otp-error');
+    const otpLinks = document.getElementById('otp-links');
+
+    otpInput.addEventListener('keyup', function(e) {
+      if (e.key === "Enter" || otpInput.value.length >= 4) {
+        checkOtp();
+      }
+    });
+    otpInput.addEventListener('change', checkOtp);
+
+    function checkOtp() {
+      if (otpInput.value.trim() === CORRECT_OTP) {
+        otpLinks.style.display = 'flex';
+        otpError.textContent = "";
+      } else if (otpInput.value.length > 0) {
+        otpLinks.style.display = 'none';
+        otpError.textContent = "Invalid code.";
+      }
+    }
+  </script>
+</body>
+</html>

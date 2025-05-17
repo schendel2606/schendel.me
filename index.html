@@ -5,7 +5,7 @@
   <title>Niv Schendel | SQL & SAP Pro</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* ==== DARK MODE ==== */
+    html, body {height: 100%;margin: 0;padding: 0;}
     body {
       margin: 0;
       padding: 0;
@@ -17,157 +17,449 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
+      transition: background 0.2s, color 0.2s;
     }
     .container {
-      margin-top: 60px;
-      width: 95%;
-      max-width: 410px;
+      margin: 48px auto 0 auto;
+      width: 100%;
+      max-width: 830px;
+      min-height: 440px;
       background: #23272e;
-      border-radius: 18px;
-      box-shadow: 0 4px 24px #0005;
-      padding: 38px 32px 26px 32px;
+      border-radius: 22px;
+      box-shadow: 0 8px 48px #0005;
+      padding: 40px 48px 36px 48px;
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
+      gap: 32px;
+      position: relative;
+      transition: max-width 0.3s, padding 0.3s;
+    }
+    @media (max-width: 900px) {
+      .container {
+        max-width: 96vw;
+        padding: 18px 2vw;
+      }
+    }
+    /* HEADER */
+    .profile-row {
+      display: flex;
       align-items: center;
-      gap: 24px;
+      justify-content: flex-start;
+      gap: 22px;
+      margin-bottom: 8px;
     }
-    .title {
-      font-size: 1.28rem;
+    .profile-pic {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      border: 2.5px solid #8bb8f9;
+      box-shadow: 0 1.5px 10px #2462;
+      object-fit: cover;
+      background: #fff;
+    }
+    .name-box {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .name-flags {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .name {
+      font-size: 1.23rem;
       font-weight: bold;
-      text-align: center;
-      color: #8bb8f9;
-      margin-bottom: 5px;
       letter-spacing: .01em;
+      color: #8bb8f9;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .subtitle {
-      font-size: 0.97rem;
-      text-align: center;
+    .age {
+      font-size: 1.01rem;
       color: #b5b5c7;
-      margin-bottom: 12px;
+      font-weight: 500;
+      margin-left: 2px;
     }
-    .links, .otp-links {
+    .flag {
+      width: 20px; height: 20px;
+      border-radius: 4px;
+      box-shadow: 0 1px 2.5px #0003;
+      object-fit: cover;
+    }
+    .role {
+      font-size: 1.06rem;
+      color: #b5b5c7;
+      margin-top: 2px;
+      margin-bottom: 3px;
+      text-align: left;
+      font-weight: 400;
+      line-height: 1.32;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 9px;
+      margin-bottom: 14px;
+    }
+    .tab-btn {
+      padding: 8px 26px;
+      border-radius: 13px 13px 0 0;
+      background: #1e2227;
+      color: #8bb8f9;
+      border: none;
+      font-size: 1.07rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      outline: none;
+      margin-bottom: -1px;
+      z-index: 2;
+    }
+    .tab-btn.active {
+      background: #23272e;
+      color: #fff;
+    }
+    .tab-content {
+      width: 100%;
+    }
+    .about-title {font-size:1.13rem;font-weight:bold;margin-bottom:6px;color:#8bb8f9;}
+    .about-text {margin-bottom:16px;}
+    .langs-rating {margin-top:16px;}
+    .stars {color:#ffd700;font-size:1.09em;letter-spacing:0.1em;}
+    .star-score {color:#888;font-size:0.96em;margin-left:4px;}
+
+    /* Timeline */
+    .timeline {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0 0;
+    }
+    .timeline li {
+      margin-bottom: 10px;
+      font-size: 1.05em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .timeline-date {
+      font-weight: 600;
+      color: #8bb8f9;
+      min-width: 94px;
+      display: inline-block;
+    }
+    .timeline-role {
+      color: #fff;
+      font-weight: 400;
+    }
+    body.light-mode .timeline-role { color: #3d5fa6; }
+
+    /* Contact buttons */
+    .links {
       display: flex;
       flex-direction: column;
       gap: 13px;
       width: 100%;
-      align-items: center;
+      align-items: flex-start;
+      margin-top: 10px;
+      margin-bottom: 14px;
     }
     .link-btn {
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 13px;
       background: #23262f;
       border: 1px solid #394355;
       color: #eaf1fb;
       text-decoration: none;
       padding: 11px 22px;
       border-radius: 28px;
-      font-size: 1.04rem;
-      transition: background 0.2s, border 0.2s;
+      font-size: 1.07rem;
+      transition: background 0.2s, border 0.2s, color 0.2s;
       font-weight: 500;
       cursor: pointer;
+      min-width: 270px;
+      max-width: 98%;
+      justify-content: flex-start;
+      margin-bottom: 3px;
     }
+    .link-btn svg {vertical-align: middle; flex-shrink: 0;}
     .link-btn:hover {
       background: #2e3647;
       border: 1.5px solid #72a1ff;
       color: #b8daff;
     }
-    .otp-box {
-      width: 100%;
-      margin-top: 20px;
+    .btn-label {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 10px;
+      align-items: flex-start;
+      margin-left: 8px;
+      min-width: 120px;
+      font-size: 1em;
     }
-    .otp-label {
-      color: #aaaec7;
-      font-size: 0.98rem;
+    .btn-user {
+      font-size: 0.95em;
+      color: #8bb8f9;
+      font-family: 'Segoe UI', Arial, sans-serif;
     }
-    .otp-input {
-      width: 100px;
-      padding: 9px;
-      font-size: 1.06rem;
-      border-radius: 10px;
-      border: 1px solid #3a445a;
-      background: #23262f;
-      color: #eaf1fb;
-      text-align: center;
-      outline: none;
-      margin-bottom: 8px;
-      transition: border .2s;
+    .btn-title {
+      font-size: 1.01em;
+      color: #f2f2f2;
+      font-weight: 500;
+      margin-top: -1px;
     }
-    .otp-input:focus {
-      border: 1.3px solid #72a1ff;
+    body.light-mode .btn-user { color: #3d5fa6;}
+    body.light-mode .btn-title { color: #181a1b;}
+
+    /* Light mode */
+    body.light-mode {
+      background: #f7f8fa;
+      color: #16171a;
     }
-    .otp-error {
-      color: #ff4b4b;
-      font-size: 0.93rem;
-      min-height: 18px;
-      margin-top: -4px;
+    body.light-mode .container {
+      background: #fff;
+      color: #222;
+      box-shadow: 0 4px 24px #8bb8f920;
     }
-    .otp-links {
-      margin-top: 10px;
-      animation: fadeIn .7s;
+    body.light-mode .name {
+      color: #3d5fa6;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px);}
-      to { opacity: 1; transform: translateY(0);}
+    body.light-mode .role {
+      color: #636681;
+    }
+    body.light-mode .link-btn {
+      background: #f2f7ff;
+      border: 1px solid #e0e7ef;
+      color: #246;
+    }
+    body.light-mode .link-btn:hover {
+      background: #e8effc;
+      border-color: #8bb8f9;
+      color: #3d5fa6;
     }
     @media (max-width: 600px) {
-      .container {padding: 18px 4vw;}
-      .title {font-size: 1.05rem;}
-      .subtitle {font-size: 0.91rem;}
+      .container {padding: 10px 0.7vw;}
+      .profile-row {gap: 8px;}
+      .name {font-size: 1.07rem;}
+      .role {font-size: 0.94rem;}
+      .link-btn {font-size: 0.98rem;}
     }
+
+    /* Mode select */
+    .mode-select-box {
+      position: fixed;
+      top: 16px;
+      right: 22px;
+      z-index: 30;
+    }
+    .mode-select {
+      padding: 8px 18px 8px 32px;
+      border-radius: 22px;
+      background: #23262f;
+      border: 1.5px solid #394355;
+      color: #8bb8f9;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border 0.2s;
+      box-shadow: 0 2px 10px #0002;
+      appearance: none;
+    }
+    body.light-mode .mode-select { background:#f2f7ff; color:#3d5fa6; border-color:#e0e7ef; }
+    .mode-select:focus { outline: none; }
   </style>
 </head>
 <body>
+  <!-- מצב תאורה ימין עליון -->
+  <div class="mode-select-box">
+    <select id="mode-select" class="mode-select">
+      <option value="dark">🌙 Dark</option>
+      <option value="light">🌞 Light</option>
+      <option value="system">🖥️ System</option>
+    </select>
+  </div>
+
   <div class="container">
-    <div class="title">
-      SQL Professional | SAP B1 Implementer | Computer Science Student
-      <br>Self-Taught Tech Enthusiast | Building Efficient Tech Solutions
+    <!-- HEADER (קבוע, לא תלוי לשונית) -->
+    <div class="profile-row">
+      <img src="https://i.postimg.cc/HnR9zwHs/Official-118px.jpg" alt="Niv Schendel" class="profile-pic" />
+      <div class="name-box">
+        <div class="name-flags">
+          <span class="name">Niv Schendel <span class="age" id="age"></span></span>
+          <img class="flag" src="https://flagcdn.com/il.svg" alt="IL" title="Israel">
+          <img class="flag" src="https://flagcdn.com/de.svg" alt="DE" title="Germany">
+        </div>
+        <div class="role">
+          SQL Professional · SAP B1 Implementer · Computer Science Student
+        </div>
+      </div>
     </div>
-    <div class="subtitle">Connect with me:</div>
-    <div class="links">
-      <a class="link-btn" href="https://github.com/schendel2606" target="_blank" title="GitHub">🐙 GitHub</a>
-      <a class="link-btn" href="https://www.linkedin.com/in/niv-schendel/" target="_blank" title="LinkedIn">💼 LinkedIn</a>
-      <a class="link-btn" href="mailto:schendel2606@gmail.com" title="Email">✉️ Email</a>
-      <a class="link-btn" href="#" onclick="alert('Coming soon!'); return false;" title="Facebook">📘 Facebook</a>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="profile">Profile</button>
+      <button class="tab-btn" data-tab="about">About Me</button>
     </div>
-    <div class="otp-box">
-      <div class="otp-label">Private links — enter access code:</div>
-      <input class="otp-input" id="otp" type="password" placeholder="OTP" maxlength="8" autocomplete="off" />
-      <div class="otp-error" id="otp-error"></div>
-      <div class="otp-links" id="otp-links" style="display:none;">
-        <a class="link-btn" href="https://wa.me/972525555579" target="_blank" title="WhatsApp">🟢 WhatsApp</a>
-        <a class="link-btn" href="Niv Schendel Resume.pdf" target="_blank" title="Resume">📄 Resume (PDF)</a>
-        <a class="link-btn" href="#" onclick="alert('Coming soon!'); return false;" title="Cover Letter">📝 Cover Letter</a>
+
+    <!-- Profile Tab -->
+    <div class="tab-content" id="tab-profile">
+      <div class="links">
+        <a class="link-btn" href="https://github.com/schendel2606" target="_blank" title="GitHub">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none"><path d="M12.026 2c-5.509 0-9.975 4.467-9.975 9.976 0 4.411 2.865 8.146 6.839 9.482.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.071 1.533 1.032 1.533 1.032.893 1.531 2.341 1.09 2.91.834.091-.647.35-1.09.636-1.342-2.221-.253-4.555-1.111-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.104-.253-.446-1.272.098-2.652 0 0 .84-.269 2.75 1.025a9.55 9.55 0 0 1 2.5-.336c.849.004 1.705.114 2.504.336 1.909-1.294 2.748-1.025 2.748-1.025.545 1.38.203 2.399.1 2.652.64.699 1.028 1.592 1.028 2.683 0 3.841-2.337 4.687-4.566 4.936.359.31.678.924.678 1.863 0 1.345-.013 2.428-.013 2.757 0 .267.18.577.688.479 3.971-1.339 6.832-5.071 6.832-9.48C22 6.467 17.533 2 12.026 2Z" fill="currentColor"/></svg>
+          <span class="btn-label">
+            <span class="btn-user">@schendel2606</span>
+            <span class="btn-title">GitHub</span>
+          </span>
+        </a>
+        <a class="link-btn" href="https://www.linkedin.com/in/niv-schendel/" target="_blank" title="LinkedIn">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.271c-.966 0-1.75-.804-1.75-1.729 0-.925.784-1.729 1.75-1.729s1.75.804 1.75 1.729c0 .925-.784 1.729-1.75 1.729zm13.5 11.271h-3v-5.604c0-1.336-.025-3.062-1.866-3.062-1.869 0-2.156 1.459-2.156 2.965v5.701h-3v-10h2.881v1.367h.041c.402-.765 1.382-1.566 2.846-1.566 3.045 0 3.607 2.005 3.607 4.614v5.585z" fill="currentColor"/></svg>
+          <span class="btn-label">
+            <span class="btn-user">niv-schendel</span>
+            <span class="btn-title">LinkedIn</span>
+          </span>
+        </a>
+        <a class="link-btn" href="mailto:niv@schendel.me" title="Email">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="6" width="20" height="12" rx="3" fill="currentColor" opacity="0.12"/>
+            <rect x="2" y="6" width="20" height="12" rx="3" stroke="currentColor" stroke-width="2"/>
+            <path d="M4 8l8 5 8-5" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+          <span class="btn-label">
+            <span class="btn-user">niv@schendel.me</span>
+            <span class="btn-title">Email</span>
+          </span>
+        </a>
+        <a class="link-btn" href="https://facebook.com/nivschendel1" target="_blank" title="Facebook">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none"><path d="M22.676 0H1.326C.594 0 0 .593 0 1.326v21.348C0 23.406.594 24 1.326 24H12.82v-9.294H9.692v-3.622h3.127V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.098 2.797.143v3.24l-1.92.001c-1.504 0-1.796.715-1.796 1.763v2.314h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.324-.594 1.324-1.326V1.326C24 .593 23.406 0 22.676 0" fill="currentColor"/></svg>
+          <span class="btn-label">
+            <span class="btn-user">@nivschendel1</span>
+            <span class="btn-title">Facebook</span>
+          </span>
+        </a>
+        <a class="link-btn" href="https://instagram.com/nivschendel1" target="_blank" title="Instagram">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.331 3.608 1.305.976.976 1.243 2.246 1.305 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.362-.329 2.632-1.305 3.608-.975.975-2.242 1.243-3.608 1.305-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.362-.062-2.632-.33-3.608-1.305-.976-.976-1.243-2.246-1.305-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.362.329-2.632 1.305-3.608.975-.974 2.246-1.243 3.608-1.305C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.74 0 8.333.013 7.053.072c-1.59.07-2.99.337-4.093 1.439C1.337 3.09 1.07 4.49 1 6.08.941 7.36.928 7.767.928 12c0 4.233.013 4.64.072 5.92.07 1.59.337 2.99 1.439 4.093 1.104 1.104 2.504 1.369 4.093 1.439 1.28.059 1.687.072 5.92.072 4.233 0 4.64-.013 5.92-.072 1.59-.07 2.99-.337 4.093-1.439 1.104-1.104 1.369-2.504 1.439-4.093.059-1.28.072-1.687.072-5.92 0-4.233-.013-4.64-.072-5.92-.07-1.59-.337-2.99-1.439-4.093C19.09 1.337 17.69 1.07 16.1 1c-1.28-.059-1.687-.072-5.92-.072zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-8 3.999 3.999 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.882 1.44 1.44 0 0 0 0-2.882z" fill="currentColor"/></svg>
+          <span class="btn-label">
+            <span class="btn-user">@nivschendel1</span>
+            <span class="btn-title">Instagram</span>
+          </span>
+        </a>
+        <a class="link-btn" href="https://x.com/niv_schendel" target="_blank" title="X">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none"><path d="M20.95 3H3.05C2.47 3 2 3.47 2 4.05v15.9C2 20.53 2.47 21 3.05 21h17.9c.58 0 1.05-.47 1.05-1.05V4.05C22 3.47 21.53 3 20.95 3zm-2.93 13.69h-2.01l-2.67-3.66-2.63 3.66H6.57l3.24-4.47-3.09-4.22h2.01l2.48 3.37 2.41-3.37h2.02l-3.13 4.33 3.26 4.36z" fill="currentColor"/></svg>
+          <span class="btn-label">
+            <span class="btn-user">@niv_schendel</span>
+            <span class="btn-title">X</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <!-- About Me Tab -->
+    <div class="tab-content" id="tab-about" style="display:none;">
+      <div class="about-title">A bit about me</div>
+      <div class="about-text">
+        Highly professional, competitive, and curious tech enthusiast with a strong passion for software development and business processes.<br>
+        Currently working as a SAP B1 Implementer and studying Computer Science at HIT.<br>
+        Experienced in SQL, database optimization, and integrating business logic with technology.<br>
+        Always looking to improve and embrace new technologies!
+      </div>
+      <div class="about-title" style="margin-top:24px;">Professional Timeline</div>
+      <ul class="timeline">
+        <li>
+          <span class="timeline-date">2024–Present</span>
+          <span class="timeline-role">SAP B1 Implementer & Knowledge Leader, Inspiria</span>
+        </li>
+        <li>
+          <span class="timeline-date">2023–2024</span>
+          <span class="timeline-role">SAP B1 Support, Inspiria</span>
+        </li>
+        <li>
+          <span class="timeline-date">2022–2023</span>
+          <span class="timeline-role">Dispatch & Operations Manager, Piatto</span>
+        </li>
+        <li>
+          <span class="timeline-date">2020–2023</span>
+          <span class="timeline-role">Production Ops Technician, IDF</span>
+        </li>
+        <li>
+          <span class="timeline-date">2018–2020</span>
+          <span class="timeline-role">Website Admin, ePharma</span>
+        </li>
+      </ul>
+      <div class="about-title" style="margin-top:26px;">Languages</div>
+      <div class="langs-rating">
+        <div>
+          <img class="flag" src="https://flagcdn.com/il.svg" style="width:18px;height:18px;margin-bottom:-4px;"> Hebrew
+          <span class="stars">★★★★★</span>
+          <span class="star-score">(5/5)</span>
+        </div>
+        <div>
+          <img class="flag" src="https://flagcdn.com/gb.svg" style="width:18px;height:18px;margin-bottom:-4px;"> English
+          <span class="stars">★★★★☆</span>
+          <span class="star-score">(4/5)</span>
+        </div>
       </div>
     </div>
   </div>
   <script>
-    // ==== OTP Logic (single file, no server) ====
-    const CORRECT_OTP = "9248";
-    const otpInput = document.getElementById('otp');
-    const otpError = document.getElementById('otp-error');
-    const otpLinks = document.getElementById('otp-links');
-
-    otpInput.addEventListener('keyup', function(e) {
-      if (e.key === "Enter" || otpInput.value.length >= 4) {
-        checkOtp();
-      }
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+        document.getElementById('tab-' + btn.dataset.tab).style.display = 'block';
+      });
     });
-    otpInput.addEventListener('change', checkOtp);
 
-    function checkOtp() {
-      if (otpInput.value.trim() === CORRECT_OTP) {
-        otpLinks.style.display = 'flex';
-        otpError.textContent = "";
-      } else if (otpInput.value.length > 0) {
-        otpLinks.style.display = 'none';
-        otpError.textContent = "Invalid code.";
+    // גיל מחושב
+    function calcAge(birth) {
+      const today = new Date();
+      const dob = new Date(birth);
+      let age = today.getFullYear() - dob.getFullYear();
+      const m = today.getMonth() - dob.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
+      return age;
+    }
+    document.getElementById('age').textContent = '(' + calcAge('2000-06-26') + ')';
+
+    // מצב תצוגה (mode select)
+    const modeSelect = document.getElementById('mode-select');
+    function applyMode(mode, save = true) {
+      if (mode === 'light') {
+        document.body.classList.add('light-mode');
+      } else {
+        document.body.classList.remove('light-mode');
+      }
+      if (save) localStorage.setItem('color-mode', mode);
+    }
+    function getSystemMode() {
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+    function setModeBySelect(mode) {
+      if (mode === 'system') {
+        applyMode(getSystemMode(), false);
+      } else {
+        applyMode(mode, false);
       }
     }
+    function updateSelectUI(mode) {
+      modeSelect.value = mode;
+    }
+    (function() {
+      const stored = localStorage.getItem('color-mode') || 'system';
+      updateSelectUI(stored);
+      setModeBySelect(stored);
+    })();
+    modeSelect.addEventListener('change', function() {
+      localStorage.setItem('color-mode', modeSelect.value);
+      setModeBySelect(modeSelect.value);
+    });
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
+      if ((localStorage.getItem('color-mode') || 'system') === 'system') {
+        setModeBySelect('system');
+      }
+    });
   </script>
 </body>
 </html>
